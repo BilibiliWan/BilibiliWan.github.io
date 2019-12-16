@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <!--每30s刷新页面-->>
+    <meta http-equiv="refresh" content="30">
+    <base href="http://www.w3cschool.cn/statics/images/w3c/" target="_blank">
+    <title>Document</title>
+
+    <style type="text/css">
+        body {background-color:yellowgreen}
+        p {color:blue}
+        h1 {color: tomato;}
+    </style> 
+
+</head>
+<body>
+    <h1>这是一个标题。</h1>
+    <h1 id="header">这是一个标题。（id="header"）</h1>
+    
+    <!--运行方式-->
+    <p>Alt+b to run codes in Chrome.</p>
+    <p>Shift+Alt+b to run codes with other browsers.</p>
+    <p>这是一个段落。</p>
+    <p class="intro">这是一个段落。（class="intro"）</p>
+    <p style="color:blue;margin-left:20px;">这是一个开头空了20px的段落。</p> 
+    <p style="text-align: center; font-family: arial; color:teal; 
+        font-size:40px;">居中对齐字体arial颜色teal大小40px的段落</p>
+   
+    <!--换行-->
+    <p>这是一个<br/>换行</p>
+    
+    <!--链接-->
+    <a href="http://www.baidu.com">这是一个链接<br/></a>
+    <a href="http://www.baidu.com" style="text-decoration:unset;">这是一个没有下划线的链接<br/></a>
+    <a href="#">这是一个空链接</a><br>
+    <a href="#tips">Visit the Useful Tips Section</a><br>
+    <a id="tips">Useful Tips Section</a><br>
+
+    <!--图片-->
+    <img src="D:\桌面文件\HtmlCodes\Valkyrie.jpg" alt="Valkyrie - 女武神" width="900" height="600"><br>
+    <img src="logo.png"> - 注意这里可正常显示是因为在head中定义了base
+
+    <!--斜体-->
+    <p>I am <em>glad</em> you weren't <em>late</em>.</p>
+    <p>I am <i>glad</i> you weren't <i>late</i>.</p>
+    <!--加粗-->
+    <p>This liquid is <strong>highly toxic</strong>.</p>
+    <p>This is <b>bold!</b>!</p>
+
+    <!--水平线-->
+    <hr/>
+
+    <!--上标下标-->
+    <p>这是一个<sub>下标</sub></p>
+    <p>这是一个<sup>上标</sup></p>
+
+    <small>This is small text.</small>
+
+    <!--保持格式输出-->
+    <pre>
+此例演示如何使用pre标签
+    对空行   和空格
+            进行原样输出而
+        不将空行和多个空格忽略
+    </pre>
+
+    <!--地址（斜体）-->
+    <address>
+        Written by <a href="http://ai.stanford.edu/~syyeung/">Serena Yeung</a>.<br>
+        Visit me at:<br>
+        450 Serra Mall,<br> 
+        Stanford, CA 94305<br>
+        USA
+    </address>
+
+    <!--缩写-->
+    <br><abbr title="etcetera">etc.</abbr><br>
+    <abbr title="World Wide Web">WWW</abbr>
+    <p>用鼠标移到缩写上可见全称。</p>
+
+    <!--文字方向-->
+    <p>该段文字从左到右显示</p>
+    <p><bdo dir="rtl">该段文字从右到左显示</bdo></p>
+
+    <!--行内引用-->
+    <p>
+        My goal is to:
+        <q>
+            Publish my articles on a journal with high impact factor! 
+        </q>
+    </p>
+    <!--长引用-->
+    <blockquote cite="http://ai.stanford.edu/~syyeung/">
+        I have openings for rotation PhD students and a limited number of MS 
+        or advanced undergraduate students in my research group for 2019-20.
+        I also have an opening for a postdoc starting summer 2020 or later. 
+        If you are a current student at Stanford who would like to work with me, 
+        please send me an email including your interests, CV and transcript. 
+        If you would like to do a postdoc with me, 
+        please send me an email including your interests and CV. 
+        For others not currently at Stanford, I apologize if I may not have the bandwidth to respond.
+    </blockquote>
+
+
+    <!--删除字效果/插入字效果-->
+    <!--<ins>标签表示更新/插入文档中的内容，表现为下划线-->
+    <p>My favorite color is <del>blue</del> <ins>red</ins>.</p>
+
+    <!--按钮-->
+    <button type="button">按钮</button>
+
+    <!--表格-->
+    <table border="1" backgroundcolor="white">
+        <th>
+            Header1
+        </th>
+        <th>
+            Header2
+        </th>
+        <th>
+            Header2
+        </th>
+        
+        <tr>
+            <td rowspan="2">Row 1, Colomn 1</td>
+            <td>Row 1, Colomn 2</td>
+            <td>Row 1, Colomn 3</td>
+        </tr>
+        <tr>
+            <td>Row 2, Colomn 2</td>
+            <td>Row 2, Colomn 3</td>
+        </tr>
+        <tr>
+            <td colspan="3">Row 3, Colomn 1</td>
+        </tr>
+    </table>
+
+    <!--列表-->
+    <ul>
+        <li>Unordered List</li>
+        <li>Coffee</li>
+        <li>Milk
+            <ul>
+                <li>Newzealand</li>
+                <li>China
+                    <ul>
+                        <li>Neimenggu</li>
+                        <li>Tibet</li>
+                    </ul>
+                </li>
+                <li>Denmark</li>
+            </ul>
+        </li>
+    </ul>
+
+    <ol>
+        <li>Ordered List</li>
+        <li>Apple</li>
+        <li>Orange</li>
+    </ol>
+    
+
+    <!--自定义列表-->
+    <dl>
+        <dt><em><b>Machine Learning</b></em></dt>
+        <dd>- Support Vector Machine</dd>
+        <dd>- Ranfom Forest</dd>
+        <dd>- K-Means</dd>
+        <dd>- PCA</dd>
+
+        <dt><em><b>Deep Learning</b></em></dt>
+        <dd>- BP Neural Networks</dd>
+        <dd>- Convolutional Neural Networks</dd>
+        <dd>- Circulate Neural Networks</dd>
+
+    </dl>
+
+    <!--表单-->
+    <form action="">
+        <!--文本框+密码+按钮-->
+        Username: <input type="text" name="user"><br>
+        Password: <input type="password" name="password"><br>
+        <input type="submit" value="Submit Now"><br>
+
+        <!--单选框-->
+        <input type="radio" name="sex" value="♂">Male<br>
+        <input type="radio" name="sex" value="♀">Female<br>
+        
+        <!--复选框-->
+        <input type="checkbox" name="vehicle" value="Bike">I have a bike.<br>
+        <input type="checkbox" name="vehicle" value="Car">I have a car.<br>
+        
+        <!--预选Porsche-->
+        <select name="cars">
+            <option value="Volvo">Volvo</option>
+            <option value="Audi">Audi</option>
+            <option value="BMW">BMW</option>
+            <option value="Porsche" selected>Porsche</option>
+        </select>
+    </form>
+
+    <form>
+        <fieldset>
+            <legend>Personal Information:</legend>
+            Name: <input type="text" name="name"><br>
+            Password: <input type="password" name="password"><br>
+            <input type="submit" value="Submit Now"><br>
+        </fieldset>
+    </form>
+
+    <!--脚本-->
+    <script>
+        document.write("This is made by JavaScript, a script language.")
+    </script>
+    <!--不支持脚本的浏览器会用一下信息替代-->
+    <noscript>抱歉，你的浏览器不支持 JavaScript!</noscript>
+
+    <!--实体-->
+    <p>想使用大于、小于号（误认为是标签）或者空格不方便时，用字符实体</p>
+    <p>&lt;小于号（lower than）<br>&gt;大于号（greater than）</p>
+    <p>Hello&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;&nbsp;World<br>空格</p>
+
+    <!--embed标签嵌入音频/图片/视频-->
+    <embed src="C:\Users\BillWan\Desktop\interesting images\XiaoWang.jpg"><br>
+    <embed height="500" width="1000" src="D:\BaiduNetdiskDownload\王牌贱谍：格林斯比.mp4">
+    <p>或者将“embed”换为object，来定义一个嵌入的对象</p>
+
+</body>
+</html>
