@@ -1,4 +1,12 @@
-var game = new Phaser.Game(320,505,Phaser.AUTO,'game'); //实例化game
+var config = {
+	width: 320,
+	height: 505,
+	type: Phaser.AUTO,
+	title: game
+}
+
+var game = new Phaser.Game(config); //实例化game
+
 game.States = {}; //存放state对象
 
 game.States.boot = function(){
@@ -8,8 +16,9 @@ game.States.boot = function(){
 			this.scale.forcePortrait = true;
 			this.scale.refresh();
 		}
-		game.load.image('loading','assets/preloader.gif');
+		game.load.image('loading','assets/preloader.gif'); //加载动画
 	};
+
 	this.create = function(){
 		game.state.start('preload'); //跳转到资源加载页面
 	};
@@ -19,23 +28,28 @@ game.States.preload = function(){
 	this.preload = function(){
 		var preloadSprite = game.add.sprite(35,game.height/2,'loading'); //创建显示loading进度的sprite
 		game.load.setPreloadSprite(preloadSprite);
+
 		//以下为要加载的资源
 		game.load.image('background','assets/background.png'); //背景
     	game.load.image('ground','assets/ground.png'); //地面
     	game.load.image('title','assets/title.png'); //游戏标题
     	game.load.spritesheet('bird','assets/bird.png',34,24,3); //鸟
-    	game.load.image('btn','assets/start-button.png');  //按钮
+    	game.load.image('btn','assets/start-button.png'); //按钮
 		game.load.spritesheet('pipe','assets/pipes.png',54,320,2); //管道
-		game.load.image('medals', 'assets/medals.png'); //奖牌
+		game.load.image('goldMedal', 'assets/goldMedal.png'); //金牌
+		game.load.image('silverMedal', 'assets/silverMedal.png'); //银牌
+		game.load.image('noMedal', 'assets/noMedal.png') //无奖牌
 
+		// 字体
     	game.load.bitmapFont('flappy_font', 'assets/fonts/flappyfont/flappyfont.png', 'assets/fonts/flappyfont/flappyfont.fnt');
-    	game.load.audio('fly_sound', 'assets/flap.wav');//飞翔的音效
-    	game.load.audio('score_sound', 'assets/score.wav');//得分的音效
+    	game.load.audio('fly_sound', 'assets/flap.wav'); //飞翔的音效
+    	game.load.audio('score_sound', 'assets/score.wav'); //得分的音效
     	game.load.audio('hit_pipe_sound', 'assets/pipe-hit.wav'); //撞击管道的音效
     	game.load.audio('hit_ground_sound', 'assets/ouch.wav'); //撞击地面的音效
 
+		// 提示信息
     	game.load.image('ready_text','assets/get-ready.png');
-    	game.load.image('play_tip','assets/instructions.png');
+    	game.load.image('play_tip','assets/instructions.png'); 
     	game.load.image('game_over','assets/gameover.png');
     	game.load.image('score_board','assets/scoreboard.png');
 	}
@@ -102,21 +116,26 @@ game.States.play = function(){
 		this.pipeGroup.forEachExists(this.checkScore,this); //分数检测和更新
 	}
 
+	// 游戏开始
 	this.statrGame = function(){
 		this.gameSpeed = 200; //游戏速度
-		this.gameIsOver = false;
-		this.hasHitGround = false;
-		this.hasStarted = true;
+		this.gameIsOver = false; //游戏未结束
+		this.hasHitGround = false; //鸟未撞地
+		this.hasStarted = true; //游戏已开始
+		
 		this.score = 0;
-		this.bg.autoScroll(-(this.gameSpeed/10),0);
-		this.ground.autoScroll(-this.gameSpeed,0);
+		this.bg.autoScroll(-(this.gameSpeed/10),0); //背景移动
+		this.ground.autoScroll(-this.gameSpeed,0); //地面移动
 		this.bird.body.gravity.y = 1150; //鸟的重力
+		
 		this.readyText.destroy();
-		this.playTip.destroy();
+		this.playTip.destroy(); //删除提示
+		
 		game.input.onDown.add(this.fly, this);
 		game.time.events.start();
 	}
 
+	// 游戏结束
 	this.stopGame = function(){
 		this.bg.stopScroll();
 		this.ground.stopScroll();
@@ -128,29 +147,36 @@ game.States.play = function(){
 		game.time.events.stop(true);
 	}
 
+	// 飞行动作
 	this.fly = function(){
 		this.bird.body.velocity.y = -350;
 		game.add.tween(this.bird).to({angle:-30}, 100, null, true, 0, 0, false); //上升时头朝上
 		this.soundFly.play();
 	}
 
+	// 撞击柱子
 	this.hitPipe = function(){
 		if(this.gameIsOver) return;
 		this.soundHitPipe.play();
 		this.gameOver();
 	}
+
+	// 撞击地面
 	this.hitGround = function(){
 		if(this.hasHitGround) return; //已经撞击过地面
 		this.hasHitGround = true;
 		this.soundHitGround.play();
 		this.gameOver(true);
 	}
+
+	// 游戏结束
 	this.gameOver = function(show_text){
 		this.gameIsOver = true;
 		this.stopGame();
 		if(show_text) this.showGameOverText();
 	};
 
+	// 游戏结束信息
 	this.showGameOverText = function(){
 		this.scoreText.destroy();
 		game.bestScore = game.bestScore || 0;
@@ -163,13 +189,13 @@ game.States.play = function(){
 		
 		var currentScoreText = game.add.bitmapText(game.width/2 + 60, 105, 'flappy_font', this.score+'', 20, this.gameOverGroup); //当前分数
 		var bestScoreText = game.add.bitmapText(game.width/2 + 60, 153, 'flappy_font', game.bestScore+'', 20, this.gameOverGroup); //最好分数
-		
-game.add.image
 
-		if(this.score >= 10){
-			var medals = this.gameOverGroup.create(game.width/2 - 65, 65, 'medals'); //奖牌
+		if(this.score >= 20){
+			var medals = this.gameOverGroup.create(game.width/2 - 65, 110, 'goldMedal'); //金牌
+		}else if(this.score >= 10){
+			var medals = this.gameOverGroup.create(game.width/2 - 65, 110, 'silverMedal'); //银牌
 		}else{
-			var medals = this.gameOverGroup.create(game.width/2 - 65, 110, 'medals'); //奖牌
+			var medals = this.gameOverGroup.create(game.width/2 - 65, 110, 'noMedal'); //无奖牌
 		}
 		
 
