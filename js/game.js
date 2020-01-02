@@ -243,6 +243,7 @@ game.States.play = function(){
 
 
 	// 撞击类
+	
 	// 撞击柱子
 	this.hitPipe = function(){
 
@@ -252,6 +253,7 @@ game.States.play = function(){
 		this.soundHitPipe.play();
 		this.gameOver();
 	}
+
 	// 撞击地面
 	this.hitGround = function(){
 		
@@ -263,6 +265,7 @@ game.States.play = function(){
 		this.soundHitGround.play();
 		this.gameOver(true);
 	}
+
 	// 撞击天花板
 	this.hitFloor = function(){
 		
@@ -276,6 +279,7 @@ game.States.play = function(){
 
 
 	// 游戏终止类
+
 	// 游戏停止
 	this.stopGame = function(){
 
@@ -291,6 +295,7 @@ game.States.play = function(){
 
 		game.time.events.stop(true); //停止生成柱子
 	}
+
 	// 游戏结束
 	this.gameOver = function(isOver){
 
@@ -300,6 +305,7 @@ game.States.play = function(){
 		if(isOver)
 			this.showGameOverText();
 	};
+
 	// 游戏结束信息
 	this.showGameOverText = function(){
 
@@ -348,6 +354,7 @@ game.States.play = function(){
 	//管道
 	//制造管道
 	this.generatePipes = function(gap){
+
 		gap = 100; //上下管道之间的间隙宽度
 		var position = (505 - 320 - gap) + 
 			Math.floor((505 - 112 - 30 - gap - 505 + 320 + gap) * Math.random()); //计算出一个上下管道之间的间隙的随机位置
@@ -366,6 +373,7 @@ game.States.play = function(){
 
 	//负责分数的检测和更新
 	this.checkScore = function(pipe){
+
 		//pipe.hasScored - 标识该管道是否已经得过分
 		//pipe.y < 0 - 一组管道中的上管道
 		//pipe.x<=this.bird.x-17-54 - 管道x坐标+管道宽度<鸟x坐标时即得分
